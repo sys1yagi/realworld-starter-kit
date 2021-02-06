@@ -1,0 +1,5 @@
+rootProject.name = "realworld-example-app"
+include ':normal'
+include ':domain'
+include ':infrastructure'
+include ':viewmodel'
