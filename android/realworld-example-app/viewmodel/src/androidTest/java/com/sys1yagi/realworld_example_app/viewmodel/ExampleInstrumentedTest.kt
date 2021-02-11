@@ -20,7 +20,7 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals(
-            "com.sys1yagi.migrate_to_jetpack_compose.viewmodel.test",
+            "com.sys1yagi.realworld_example_app.viewmodel.test",
             appContext.packageName
         )
     }
