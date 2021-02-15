@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import com.sys1yagi.realworld_example_app.normal.databinding.FragmentHomeBinding
+import com.sys1yagi.realworld_example_app.normal.ui.home.feed.GlobalFeedFragment
+import com.sys1yagi.realworld_example_app.normal.ui.home.feed.UserFeedFragment
 import com.sys1yagi.realworld_example_app.viewmodel.ui.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -36,10 +38,29 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        binding.viewPager.adapter = object : FragmentStateAdapter(this) {
+            override fun getItemCount(): Int {
+                return 2
+            }
+
+            override fun createFragment(position: Int): Fragment {
+                return when (position) {
+                    0 -> {
+                        GlobalFeedFragment()
+                    }
+                    else -> {
+                        UserFeedFragment()
+                    }
+                }
+            }
+        }
+
+        TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
+            tab.text = when (position) {
+                0 -> "Global Feed"
+                else -> "User Feed"
+            }
+        }.attach()
         return root
     }
 
