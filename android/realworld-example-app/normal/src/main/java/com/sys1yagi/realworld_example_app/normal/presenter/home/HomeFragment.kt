@@ -1,4 +1,4 @@
-package com.sys1yagi.realworld_example_app.normal.ui.home
+package com.sys1yagi.realworld_example_app.normal.presenter.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.sys1yagi.realworld_example_app.normal.databinding.FragmentHomeBinding
-import com.sys1yagi.realworld_example_app.normal.ui.home.feed.GlobalFeedFragment
-import com.sys1yagi.realworld_example_app.normal.ui.home.feed.UserFeedFragment
+import com.sys1yagi.realworld_example_app.normal.presenter.home.feed.GlobalFeedFragment
+import com.sys1yagi.realworld_example_app.normal.presenter.home.feed.UserFeedFragment
 import com.sys1yagi.realworld_example_app.viewmodel.ui.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

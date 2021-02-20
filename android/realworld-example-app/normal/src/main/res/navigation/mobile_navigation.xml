@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.sys1yagi.realworld_example_app.normal.ui.home.HomeFragment"
+        android:name="com.sys1yagi.realworld_example_app.normal.presenter.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.sys1yagi.realworld_example_app.normal.ui.settings.SettingsFragment"
+        android:name="com.sys1yagi.realworld_example_app.normal.presenter.settings.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

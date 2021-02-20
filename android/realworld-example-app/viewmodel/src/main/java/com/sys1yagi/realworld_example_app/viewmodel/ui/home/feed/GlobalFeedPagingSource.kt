@@ -13,18 +13,23 @@ class GlobalFeedPagingSource(
         private const val PAGE_SIZE = 20
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Article>): Int {
-        return 0
+    override fun getRefreshKey(state: PagingState<Int, Article>): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            state.closestPageToPosition(anchorPosition)?.prevKey
+        }
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
         val offset = params.key ?: 0
+        val limit = PAGE_SIZE
         return try {
-            val result = articleRepository.getGlobalArticles(offset, PAGE_SIZE)
+            val result = articleRepository.getGlobalArticles(offset, limit)
             LoadResult.Page(
                 data = result,
-                prevKey = offset,
-                nextKey = offset + PAGE_SIZE
+                prevKey = offset.takeIf { it > 0 }?.let {
+                    it - PAGE_SIZE
+                },
+                nextKey = offset + result.size
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

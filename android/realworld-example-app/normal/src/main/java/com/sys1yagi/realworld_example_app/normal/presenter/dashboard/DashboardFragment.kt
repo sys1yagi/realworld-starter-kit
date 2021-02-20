@@ -1,4 +1,4 @@
-package com.sys1yagi.realworld_example_app.normal.ui.settings
+package com.sys1yagi.realworld_example_app.normal.presenter.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,17 +8,17 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.sys1yagi.realworld_example_app.normal.databinding.FragmentSettingsBinding
-import com.sys1yagi.realworld_example_app.viewmodel.ui.notifications.NotificationsViewModel
+import com.sys1yagi.realworld_example_app.normal.databinding.FragmentDashboardBinding
+import com.sys1yagi.realworld_example_app.viewmodel.ui.dashboard.DashboardViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SettingsFragment : Fragment() {
+class DashboardFragment : Fragment() {
 
     @Inject
-    lateinit var notificationsViewModel: NotificationsViewModel
-    private var _binding: FragmentSettingsBinding? = null
+    lateinit var dashboardViewModel: DashboardViewModel
+    private var _binding: FragmentDashboardBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -28,15 +28,15 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        notificationsViewModel =
-            ViewModelProvider(this).get(com.sys1yagi.realworld_example_app.viewmodel.ui.notifications.NotificationsViewModel::class.java)
+    ): View? {
+        dashboardViewModel =
+            ViewModelProvider(this).get(com.sys1yagi.realworld_example_app.viewmodel.ui.dashboard.DashboardViewModel::class.java)
 
-        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
+        val textView: TextView = binding.textDashboard
+        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
