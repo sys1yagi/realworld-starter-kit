@@ -85,3 +85,4 @@ lint/tmp/
 # lint/reports/
 .idea/codeStyles
 .idea/deploymentTargetDropDown.xml
+.idea/misc.xml
